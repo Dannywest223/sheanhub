@@ -27,13 +27,13 @@
 }
 
 body {
-    font-family: 'Lora', serif;
-    /* Classic milk background with subtle texture */
-    background-color: #f5f5f5; /* Background color */
+    font-family: 'Lora', serif, 'Julius Sans One', sans-serif; /* Preferred fonts */
+    background-color: #f5f5f5; /* Classic milk background */
     overflow-x: hidden; /* Prevent horizontal scroll */
     width: 100%;
     max-width: 100%;
 }
+
 
 body::before {
     content: '';
@@ -86,12 +86,6 @@ body::before {
     padding: 0 1rem;
 }
 
-.logo {
-    font-family: 'Julius Sans One', sans-serif;
-    color: var(--primary);
-    font-size: 2rem;
-    font-weight: 700;
-}
 
 .nav-links {
     display: flex;
@@ -130,141 +124,138 @@ body::before {
 }
 
 
-/* Hero section styling */
+
+
+
+
 .hero {
     position: relative;
     height: 100vh;
-    background: url('images/5.jpg') no-repeat center center/cover; /* Background image */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+    width: 100%;
     overflow: hidden;
-    background-attachment: fixed;
 }
 
-/* Glassy effect for the hero-content */
-.hero-content {
-    color: white;
-    z-index: 1;
-    position: relative;
-    text-align: center;
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent background */
-    backdrop-filter: blur(15px); /* Glass effect */
-    border-radius: 10px;
-    width: 90%;
-    max-width: 1200px;
+/* Video background styling */
+.hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 1;
+    will-change: transform;
+    transform: translateZ(0);
+    /* Ensure video is visible immediately */
+    visibility: visible !important;
+    display: block !important;
 }
-
-/* Styling for the hero text */
-.hero-text {
-    font-size: 4rem; /* Adjusted font size for better proportion */
-    font-weight: bold;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-bottom: 20px;
-    letter-spacing: 5px;
-    line-height: 1.2;
-}
-
-/* Animation for each word (One-time animation) */
-.hero-text span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(50px); /* Start from below */
-    animation: slideInUp 1.5s ease forwards; /* Runs once */
-    margin: 0 10px; /* Spacing between words */
-}
-
-.hero-text span:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.hero-text span:nth-child(2) {
-    animation-delay: 0.5s;
-}
-
-.hero-text span:nth-child(3) {
-    animation-delay: 1s;
-}
-
-/* Subtitle styling */
-.hero-subtitle {
-    font-size: 1.75rem;
-    margin-bottom: 30px;
-    opacity: 0.9;
-    line-height: 1.6;
-    font-weight: 300;
-    max-width: 90%; /* Ensures subtitle doesn't stretch too wide */
-    margin: 0 auto;
-    transition: opacity 1s ease-in-out;
-}
-
-/* Button styling */
-.btn {
-    padding: 12px 40px;
-    font-size: 1.2rem;
-    background-color: rgba(255, 255, 255, 0.3); /* Slightly more visible */
-    color: white;
-    border: none;
-    text-decoration: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px; /* Space between subtitle and button */
-}
-
-.btn:hover {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-/* Animation for sliding words upwards */
-@keyframes slideInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(50px); /* Start from below */
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0); /* End in position */
-    }
-}
-
-/* Responsive Design */
+/* Reduce video quality on mobile for better performance */
 @media (max-width: 768px) {
+    .hero video {
+        transform: scale(1.1) translateZ(0); /* Slight zoom to hide any edges */
+        filter: brightness(0.85) blur(1px); /* Slightly blur to hide compression artifacts */
+    }
+}
 
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+    margin-left: 5%;
+    margin-top: 19rem;
+    padding: 2.5rem;
+    background: rgba(216, 116, 70, 0.2); /* Light transparent brown */
+    backdrop-filter: blur(10px); /* Slightly stronger blur for a glassier effect */
+    border-radius: 15px;
+    border: 1px solid rgba(216, 116, 70, 0.3); /* Border color to match */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+
+.hero-text {
+    color: #fff;
+    margin-bottom: 1.5rem;
+}
+
+.hero-text span {
+    display: block;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 900; /* Increased boldness */
+    letter-spacing: 4px; /* Added spacing between letters */
+    line-height: 1.9;
+    color: rgba(128, 49, 11, 0.95);
+}
+
+
+.hero-subtitle {
+    color: #fff;
+    font-size: clamp(1rem, 1.2vw, 1.2rem);
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+/* Learn More link styling */
+.hero-content a {
+    display: block;
+    text-align: right;
+    color: rgba(128, 49, 11, 0.95);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.hero-content a:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Shop Now button styling */
+.shop-now {
+    position: absolute;
+    right: 14%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: rgba(216, 116, 70, 0.95);
+    padding: 1rem 2rem;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    z-index: 1;
+}
+
+.shop-now:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
     .hero-content {
-        margin-top:2rem;
+        margin: 10vh 5% 0;
+        padding: 2rem;
+        margin-top:10rem;
     }
-
-    .hero-text {
-        font-size: 2.5rem; /* Smaller font size for mobile */
-    }
-
-    .hero-subtitle {
-        font-size: 1.4rem;
-        max-width: 100%;
-    }
-
-    .btn {
-        padding: 10px 30px;
-        font-size: 1.1rem;
+    
+    .shop-now {
+        right: 50%;
+        top: auto;
+        bottom: 10%;
+        transform: translateX(50%);
     }
 }
 
 @media (max-width: 480px) {
-    .hero-text {
-        font-size: 2rem; /* Even smaller for very small screens */
+    .hero-content {
+        margin: 5vh 3% 0;
+        padding: 1.5rem;
     }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
+    
+    .hero-text span {
+        font-size: clamp(1.5rem, 3vw, 2rem);
     }
 }
-
-
 
 
 
@@ -321,7 +312,7 @@ body::before {
     background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent background */
     border-radius: 15px; /* Rounded corners */
     backdrop-filter: blur(15px); /* Glassy effect */
-    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5); /* Gold-colored shadow with higher opacity */
+   
     color: #fff; /* White text for contrast */
     z-index: 1;
     transition: all 0.4s ease;
@@ -357,7 +348,7 @@ body::before {
     padding: 1.5rem;
     border-radius: 10px;
     backdrop-filter: blur(10px);
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5); /* Gold-colored box shadow */
+  
     transition: all 0.3s ease;
 }
 
@@ -379,7 +370,7 @@ body::before {
     width: 100%;
     max-width: 500px;
     border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
     object-fit: cover;
 }
 
@@ -435,12 +426,13 @@ body::before {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0; /* Remove any large margins around the section */
 }
 
 .section-title {
     font-size: 3rem;
     font-weight: bold;
-    color: rgba(255, 255, 200, 0.8); /* Milk Yellow Color */
+    color: black; /* Milk Yellow Color */
     text-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     margin-bottom: 40px;
     backdrop-filter: blur(10px); /* Glass effect for title */
@@ -453,14 +445,17 @@ body::before {
 /* Flexbox for aligning boxes */
 .service-boxes {
     display: flex;
-    gap: 30px;
-    justify-content: center;
+    gap: 20px;
+    justify-content: space-between; /* Ensure boxes fill the available width */
     flex-wrap: wrap;
+    width: 100%; /* Ensures the boxes fill the available width */
+    max-width: 1200px; /* Optional: max width for large screens */
+    margin: 0 auto; /* Centers the service boxes */
 }
 
 /* Service Box Styling */
 .service-box {
-    width: 300px;
+    width: 32%; /* Ensure boxes fill up more space */
     padding: 20px;
     background: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
     border-radius: 20px;
@@ -471,6 +466,7 @@ body::before {
     position: relative;
 }
 
+/* Images inside the service boxes */
 .service-box img {
     width: 100%;
     height: 200px;
@@ -482,7 +478,7 @@ body::before {
 .service-box .service-description {
     margin-top: 20px;
     font-size: 1.2rem;
-    color:black; /* Soft white text */
+    color: black;
     line-height: 1.6;
 }
 
@@ -514,17 +510,18 @@ body::before {
         gap: 20px;
     }
 
-    /* Adjust the box width to 90% for small screens (medium size) */
+    /* Adjust the box width for smaller screens */
     .service-box {
-        width: 100%; /* Larger width on small screens */
-        max-width: 500px; /* Maximum width limit */
-        margin-right:13rem;
+        width: 90%; /* More space on smaller screens */
+        margin: 0 auto; /* Center service boxes */
+        max-width: 600px; /* Maximum width */
     }
 
     .section-title {
         font-size: 2.5rem;
     }
 }
+
 
 /* Enhanced Video Section */
 .video-section {
@@ -1056,7 +1053,7 @@ footer {
                 <a href="#products">Products</a>
                 <a href="#projects">Projects</a>
                 <a href="#impact">Impact</a>
-                <a href="#donate" class="btn">Donate</a>
+                <a href="#donate">Donate</a>
             </div>
             <button class="menu-button">☰</button>
         </div>
@@ -1066,19 +1063,28 @@ footer {
     </nav>
 
     <section class="hero">
+        <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline 
+            preload="auto" 
+            id="heroVideo">
+            <source src="images/main.mp4" type="video/mp4">
+            <source src="images/main.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
         <div class="hero-content">
             <h1 class="hero-text">
-                <span>HELLO</span>
-                <span>WE ARE</span>
-                <span>SHEANHUB...</span>
+                <span>SHEAN</span>
             </h1>
             <p class="hero-subtitle">
                 Sheane Hub is a community-based organization with the mission of reducing women and youth poverty in rural landscapes through improved monetization of indigenous resources and creating career paths for youths in development.
             </p>
-            <a href="#learn-more" class="btn">Learn More</a>
+            <a href="#learn-more">LEARN MORE →</a>
         </div>
+        <button class="shop-now">SHOP NOW</button>
     </section>
-    
     
     
     <section class="who-we-are">
@@ -1203,19 +1209,19 @@ footer {
         <p>Our mission is recognized and supported by these top organisations and more.</p>
         <div class="partner-logos">
             <div class="partner-logo">
-                <img src="logo1.png" alt="Partner 1">
+                <img src="" alt="Partner 1">
             </div>
             <div class="partner-logo">
-                <img src="logo2.png" alt="Partner 2">
+                <img src="" alt="Partner 2">
             </div>
             <div class="partner-logo">
-                <img src="logo3.png" alt="Partner 3">
+                <img src="" alt="Partner 3">
             </div>
             <div class="partner-logo">
-                <img src="logo4.png" alt="Partner 4">
+                <img src="" alt="Partner 4">
             </div>
             <div class="partner-logo">
-                <img src="logo5.png" alt="Partner 5">
+                <img src="" alt="Partner 5">
             </div>
         </div>
     </section>
@@ -1354,6 +1360,17 @@ window.addEventListener('scroll', function () {
 
 
 
+    document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('heroVideo');
+    video.play().catch(function(error) {
+        console.log("Video play failed:", error);
+    });
+});
+
+window.addEventListener('load', function () {
+    var video = document.getElementById('heroVideo');
+    video.load();
+});
 
     </script>
     
